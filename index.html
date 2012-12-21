@@ -15,6 +15,15 @@ body {
   margin: 0;
   line-height: 1.5;
   font-family: Droid Serif, serif;
+  color: #222;
+  background: #e5e5e5;
+  background: -moz-linear-gradient(top,  #e5e5e5 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#ffffff));
+  background: -webkit-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%);
+  background: -o-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%);
+  background: -ms-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%);
+  background: linear-gradient(to bottom,  #e5e5e5 0%,#ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 );
 }
 h1, h2, h3 {
   font-family: Share Tech;
@@ -25,11 +34,13 @@ h2, h3 {
 }
 h1 {
   font-size: 200%;
+  color: #444;
 }
 h1 span {
   display: block;
   font-size: 40%;
   font-weight: normal;
+  color: #666;
 }
 h2 {
   font-size: 160%;
@@ -45,16 +56,28 @@ img { display: block; }
 header {
   overflow: hidden;
   margin-bottom: 2em;
-  background: #ddd;
+  background: #fafafa;
+  box-shadow: 0 1px 8px rgba(0,0,0,.2)
 }
-.download {
+.download,
+.docs {
   float: right;
+  margin: 0 .2em;
   padding: .5em 1em;
   margin-top: 2.5em;
   text-decoration: none;
   font-family: Share Tech;
   color: white;
   background: blue;
+}
+.docs {
+  background: #6AB000;
+}
+.slider img {
+  padding: 1em;
+  background: white;
+  outline: 1px solid #bbb;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
 article {
   padding: 1em 0;
@@ -65,13 +88,16 @@ footer {
   margin-top: 100px;
   padding: 30px 0;
   background: #151515;
-  color: white;
+}
+footer h1 {
+  color: #f0f0f0;
 }
 footer ul {
   padding: 0;
   list-style: none;
   font-size: 85%;
   text-align: right;
+  color: #f0f0f0;
 }
 
 @media all and (max-width: 1024px) {
@@ -96,6 +122,7 @@ footer ul {
   </div>
   <div class="col">
     <a href="https://github.com/elclanrs/jquery.columns/archive/master.zip" class="download">Download</a>
+    <a href="https://github.com/elclanrs/jquery.columns" class="docs">Docs</a>
   </div>
 </header>
 
