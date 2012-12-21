@@ -102,7 +102,6 @@
 
     // Responsiveness
     $win.resize(function(){
-
       if ( o.breakpoints ) {
         $.each( o.breakpoints, function( i, arr ) {
           if ( $win.width() <= arr[0] ) {
