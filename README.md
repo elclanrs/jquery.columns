@@ -47,7 +47,6 @@ Set options and call plugin:
 $.columns.setDefaults({ 
   width: 60,
   center: true,
-  fillAt: 1024,
   fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
               // @media-query________^     ^_____font-size
 })
