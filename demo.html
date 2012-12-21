@@ -74,8 +74,10 @@ footer {
 <script type="text/javascript" charset="utf-8">
 
 $.columns.setDefaults({ 
-  width: 75,
-  center: true
+  width: 60,
+  center: true,
+  fillAt: 1024,
+  fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
 })
 
 $('.content-one').columns({ colsPerRow: 1 })

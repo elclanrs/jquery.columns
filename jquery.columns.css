@@ -22,7 +22,7 @@
   clear: both;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 1024px) {
   .col { 
     font-size: 16px !important; 
   }
@@ -30,7 +30,7 @@
 
 @media all and (min-width: 1440px) {
   .col { 
-    font-size: 26px !important; 
+    font-size: 22px !important; 
   }
 }
 

@@ -19,7 +19,8 @@
         width: 75, // percent of window
         height: 'auto',
         center: true,
-        fontSize: calcFontSize( 75, 1920, 26 ) // maxMedia = 1920 * (75/100) = 1440
+        fillAt: 1024, // Resolution at which the layout is 100% width
+        fontSize: 1.55
       }
 
     // Media query
@@ -45,18 +46,6 @@
     return props
   }
 
-  /*
-   * Calculate aprox font-size in viewport units
-   * @param {Number} width Percent of window width
-   * @param {Number} maxDevice Maximum target device width, ie. 1920 (desktop)
-   * @param {Number} maxFontSize Maximum font-size for biggest device (px)
-   * @return {Number}
-   */
-  function calcFontSize( width, maxDevice, maxFontSize ) {
-    var maxMedia = maxDevice * ( width / 100 )
-    return ( 100 * maxFontSize ) / maxMedia
-  }
-
   // Override css method to parse viewport units
   $.fn.css = function() {
     var self = this
@@ -65,7 +54,7 @@
       , update = function() {
           return _css.apply( self, isObj ? [ parseProps( $.extend( {}, args[0] ) ) ] : args )
         }
-    $win.resize( update ).resize()
+    $win.resize( update )
     return update()
   }
 
@@ -74,23 +63,59 @@
 
     var self = this.addClass('clear').find('.col')
       , o = $.extend( {}, defaults, opts )
-      , colWidth = o.width / o.colsPerRow
+
       , isFullWidth = o.width == 100
-      , nth = o.colsPerRow == 1 ? '1n' : o.colsPerRow == 2 ? 'odd' : ++o.colsPerRow +'n'
+
+      , nth = o.colsPerRow == 1 ? '1n' : o.colsPerRow == 2 ? 'odd' : o.colsPerRow + 1 +'n'
       , $firstRowCol = self.filter(':first, :nth-child('+ nth +')')
+
+
+      , getColWidth = function() {
+          return $win.width() <= o.fillAt
+            ? 100 / o.colsPerRow
+            : o.width / o.colsPerRow
+        }
+      , setMargin = function() {
+          if ( !isFullWidth && o.center ) {
+            $firstRowCol.css({ marginLeft: (100 - o.width) / 2 +'vw' })
+          }
+        }
 
     $firstRowCol.css('clear', 'both')
 
-    if ( !isFullWidth && o.center ) {
-      $firstRowCol.css({ marginLeft: (100 - o.width) / 2 +'vw' })
-    }
+    // Responsiveness
+    $win.resize(function(){
+      if ( $(this).width() <= o.fillAt ) {
+        self.css({
+          width: getColWidth() +'vw',
+          marginLeft: 0
+        })
+      } else {
+        self.css({ width: getColWidth() +'vw' })
+        setMargin()
+      }
+    })
+
+    // Init
+    setMargin()
+    $win.resize()
 
     return self.css({
-      width: colWidth +'vw',
+      width: getColWidth() +'vw',
       height: o.height,
       fontSize: o.fontSize +'vw'
     })
 
+  }
+
+  /*
+   * @param min {Array} [ media, font ]. ie [ 1024, 16 ]
+   * @param max {Array} [ media, font ]. ie [ 1440, 24 ]
+   */
+  $.columns.calcFontSize = function( min, max ) {
+    var low = ( min[1] * 100 ) / min[0]
+      , high = ( max[1] * 100 ) / max[0]
+    return ( (low + high) / 2 ).toFixed(2)
   }
 
   $.columns.setDefaults = function( opts ) {
