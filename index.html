@@ -202,6 +202,10 @@ $('.slider').columns({ colsPerRow: 1 })
 $('header').columns({ colsPerRow: 2 })
 $('footer').columns({ colsPerRow: 6 })
 
+setInterval(function() {
+  $('.slider img').attr('src', 'http://lorempixel.com/1344/450?'+ new Date().getTime())
+}, 2500 )
+
 </script>
 
 </body>
