@@ -49,7 +49,7 @@ Set options and call plugin:
 $.columns.setDefaults({ 
   width: 60,
   center: true,
-  fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
+  fontSize: $.columns.calcFontSize([1024, 16], [1440, 20])
               // @media-query________^     ^_____font-size
 })
 
@@ -69,7 +69,7 @@ Configure @media-queries based on the fontSize set in the plugin. Any resolution
 }
 @media all and (min-width: 1440px) {
   .col { 
-    font-size: 22px !important; 
+    font-size: 20px !important; 
   }
 }
 ```
@@ -78,10 +78,10 @@ Configure @media-queries based on the fontSize set in the plugin. Any resolution
 ```javascript
 defaults = {
   colsPerRow: 3, // columns per row
-  width: 75, // percentage of window width
+  width: 60, // percentage of window width
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
-  breakPoints: [ [768, 95], [1080, 80] ] // assign width percentages to different resolutions [res, width]
+  breakPoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
   fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
 }
 ```
