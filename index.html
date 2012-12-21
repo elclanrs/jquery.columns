@@ -7,18 +7,35 @@
 <![endif]-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="jquery.columns.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Share+Tech' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="jquery.columns.css" type="text/css" />
 <style type="text/css" media="all">
 body {
   margin: 0;
-  line-height: 1.4;
-  font-family: Liberation Serif, serif;
+  line-height: 1.5;
+  font-family: Droid Serif, serif;
+}
+h1, h2, h3 {
+  font-family: Share Tech;
+}
+
+h2, h3 {
+  color: #444;
 }
 h1 {
-  font-size: 180%;
+  font-size: 200%;
+}
+h1 span {
+  display: block;
+  font-size: 40%;
+  font-weight: normal;
 }
 h2 {
-  font-size: 140%;
+  font-size: 160%;
+}
+h3 {
+  font-size: 130%;
 }
 p { margin: 0 }
 img { display: block; }
@@ -29,6 +46,15 @@ header {
   overflow: hidden;
   margin-bottom: 2em;
   background: #ddd;
+}
+.download {
+  float: right;
+  padding: .5em 1em;
+  margin-top: 2.5em;
+  text-decoration: none;
+  font-family: Share Tech;
+  color: white;
+  background: blue;
 }
 article {
   padding: 1em 0;
@@ -54,7 +80,10 @@ footer ul {
 
 <header>
   <div class="col">
-    <h1>Header</h1>
+    <h1>jQuery.columns <span>viewport relative responsive grids</span> </h1>
+  </div>
+  <div class="col">
+    <a href="https://github.com/elclanrs/jquery.columns/archive/master.zip" class="download">Download</a>
   </div>
 </header>
 
@@ -130,7 +159,8 @@ $.columns.setDefaults({
 
 $('.content-two').columns({ colsPerRow: 2 })
 $('.content-three').columns({ colsPerRow: 3 })
-$('header, .slider').columns({ colsPerRow: 1 })
+$('.slider').columns({ colsPerRow: 1 })
+$('header').columns({ colsPerRow: 2 })
 $('footer').columns({ colsPerRow: 6 })
 
 </script>
