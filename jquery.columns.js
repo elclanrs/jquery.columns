@@ -16,10 +16,9 @@
     , defaults = {
         colsPerRow: 3,
         width: 75, // percent of window
+        breakpoints: [ [768, 100], [1200, 80] ],
         height: 'auto',
         center: true,
-        fillAt: 1024, // Resolution at which the layout is 100% width
-        responsiveAt: 1024,
         fontSize: 1.55
       }
 
@@ -70,7 +69,7 @@
         }
 
     if ( hasUnits ) {
-      $win.on('resize', update )
+      $win.resize( update )
     }
 
     return update()
@@ -83,43 +82,44 @@
     var self = this.addClass('clear').find('.col')
       , o = $.extend( {}, defaults, opts )
 
-      , isFullWidth = o.width == 100
-
       , nth = o.colsPerRow == 1 ? '1n' : o.colsPerRow == 2 ? 'odd' : o.colsPerRow + 1 +'n'
       , $firstRowCol = self.filter(':first, :nth-child('+ nth +')')
 
-      , getColWidth = function() {
-          return $win.width() <= o.fillAt
-            ? 100 / o.colsPerRow
-            : o.width / o.colsPerRow
+      , setColWidth = function( width ) {
+          self.css({ width: width / o.colsPerRow +'vw' })
         }
-      , setMargin = function() {
-          if ( !isFullWidth && o.center ) {
-            $firstRowCol.css({ marginLeft: (100 - o.width) / 2 +'vw' })
+      , setMargin = function( width ) {
+          if ( o.center ) {
+            $firstRowCol.css({ marginLeft: (100 - width) / 2 +'vw' })
           }
+        }
+      , reset = function() {
+          setColWidth( o.width )
+          setMargin( o.width )
         }
 
     $firstRowCol.css('clear', 'both')
 
     // Responsiveness
     $win.resize(function(){
-      if ( $(this).width() <= o.fillAt ) {
-        self.css({
-          width: getColWidth() +'vw',
-          marginLeft: 0
+
+      if ( o.breakpoints ) {
+        $.each( o.breakpoints, function( i, arr ) {
+          if ( $win.width() <= arr[0] ) {
+            setColWidth( arr[1] )
+            setMargin( arr[1] )
+            return false
+          }
+          reset()
         })
-      } else {
-        self.css({ width: getColWidth() +'vw' })
-        setMargin()
       }
     })
 
     // Init
-    setMargin()
-    $win.resize()
+    reset()
+    setTimeout( function(){ $win.resize() }, 1 )
 
     return self.css({
-      width: getColWidth() +'vw',
       height: o.height,
       fontSize: o.fontSize +'vw'
     })
