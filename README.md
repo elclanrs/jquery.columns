@@ -34,11 +34,14 @@ Create block containers at body level so they cover 100% width, then put as many
   </div>
   <div class="col">
     <!-- content -->
-  </div>
+  </div> !u!@
 </article>
 
 <footer>
   <div class="col">
+    <!-- content -->  
+  </div>
+  <div class="col push-1">
     <!-- content -->  
   </div>
 </footer>
@@ -54,7 +57,7 @@ $.columns.setDefaults({
 })
 
 $('.content').columns({ colsPerRow: 3 })
-$('header, footer').columns({ colsPerRow: 1 })
+$('header, footer').columns({ colsPerRow: 3 })
 ```
 
 Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted. If you want to change fonts on elements inside columns always use percentages or ems to keep proportions.

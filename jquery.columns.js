@@ -62,6 +62,8 @@
 
     this.$firstRowCol = this.$el
       .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
+  
+    this.curWidth = null
 
     this.init()
   }
@@ -82,6 +84,8 @@
         $win.resize(function() { self.resize() })
       }
 
+      this.pushCols( this.opts.width )
+
       $win.resize()
 
     },
@@ -89,6 +93,10 @@
     reset: function() {
       this.setColWidth( this.opts.width )
       this.setMargin( this.opts.width )
+    },
+
+    getColWidth: function( width ) {
+      return ( $win.width() * (width / 100) ) / this.opts.colsPerRow
     },
 
     setColWidth: function( width ) {
@@ -101,12 +109,32 @@
       }
     },
 
+    pushCols: function( width ) {
+
+      var self = this
+
+      this.$el.each(function() {
+
+        var push = ( /push\-(\d)/.exec( this.className ) || [,0] )[1]
+          , margin = self.getColWidth( width ) * push
+
+        if ( push && push.length ) {
+          $(this).css({
+            marginLeft: margin +'px'
+          })
+        }
+
+      })
+
+    },
+
     resize: function() {
       var self = this
       $.each( self.opts.breakpoints, function( i, arr ) {
         if ( $win.width() <= arr[0] ) {
           self.setColWidth( arr[1] )
           self.setMargin( arr[1] )
+          self.pushCols( arr[1] )
           return false
         }
         self.reset()

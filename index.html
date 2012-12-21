@@ -31,9 +31,17 @@ article {
 }
 footer {
   overflow: hidden;
+  min-height: 250px;
   margin-top: 4em;
+  padding: 30px 0;
   background: #151515;
   color: white;
+}
+footer ul {
+  padding: 0;
+  list-style: none;
+  font-size: 85%;
+  text-align: right;
 }
 </style>
 <meta charset=utf-8 />
@@ -76,7 +84,32 @@ footer {
   <div class="col">
     <h1>Footer</h1>
   </div>
-</footer>
+  <div class="col push-2">
+    <ul>
+      <li>Lorem Ipsum</li>
+      <li>Ipsum dolor</li>
+      <li>Dolor amet</li>
+      <li>Site amet consecteur</li>
+    </ul>
+  </div>
+  <div class="col">
+    <ul>
+      <li>One two</li>
+      <li>Two three</li>
+      <li>Three four</li>
+      <li>Four five</li>
+    </ul>
+  </div>
+  <div class="col">
+    <ul>
+      <li>Green blue</li>
+      <li>Blue red</li>
+      <li>Orange green</li>
+      <li>Purple grey</li>
+      <li>Yellow white</li>
+    </ul>
+  </div>
+ </footer>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -88,7 +121,8 @@ $.columns.setDefaults({
 
 $('.content-two').columns({ colsPerRow: 2 })
 $('.content-three').columns({ colsPerRow: 3 })
-$('header, footer, .slider').columns({ colsPerRow: 1 })
+$('header, .slider').columns({ colsPerRow: 1 })
+$('footer').columns({ colsPerRow: 6 })
 
 </script>
 
