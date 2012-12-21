@@ -15,7 +15,7 @@
     // Default options
     , defaults = {
         colsPerRow: 3,
-        width: 75, // percent of window
+        width: 60, // percent of window
         breakpoints: [ [768, 100], [1200, 80] ],
         height: 'auto',
         center: true,
