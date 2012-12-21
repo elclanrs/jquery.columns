@@ -78,7 +78,7 @@ Configure @media-queries based on the fontSize set in the plugin. Any resolution
 ```javascript
 defaults = {
   colsPerRow: 3, // columns per row
-  width: 75, // percentage of window width
+  width: 60, // percentage of window width
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
   breakPoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
