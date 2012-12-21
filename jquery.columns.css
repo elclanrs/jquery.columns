@@ -1,0 +1,37 @@
+
+.col,
+.col * { 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.col {
+  float: left;
+  padding: 0 1em;
+}
+
+.clear:before,
+.clear:after {
+  content: " ";
+  display: table;
+}
+
+.clear:after {
+  clear: both;
+}
+
+@media all and (max-width: 768px) {
+  .col { 
+    font-size: 16px !important; 
+  }
+}
+
+@media all and (min-width: 1440px) {
+  .col { 
+    font-size: 26px !important; 
+  }
+}
+
+
