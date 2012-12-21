@@ -54,7 +54,10 @@ $('header').columns({ colsPerRow: 1 })
 $('footer').columns({ colsPerRow: 1 })
 ```
 
-Configure @media-queries based on the fonSize set in the plugin:
+Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted.
+
+**Note:** Since we're using JS the view might flicker for a second before auto-adjusting.
+
 ```css
 @media all and (max-width: 1024px) {
   .col { 
@@ -75,7 +78,7 @@ defaults = {
   width: 75, // percentage of window width
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
-  fillAt: 1024, // Resolution at which the layout is 100% width
+  fillAt: 1024, // Resolution at which the layout becomes 100% width (mobile)
   fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
 }
 ```
