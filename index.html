@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -151,3 +152,99 @@
   
   </body>
 </html>
+=======
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="jquery.columns.js"></script>
+<link rel="stylesheet" href="jquery.columns.css" type="text/css" />
+<style type="text/css" media="all">
+body {
+  margin: 0;
+  line-height: 1.4;
+  font-family: Liberation Serif, serif;
+}
+h1 {
+  font-size: 180%;
+}
+p { margin: 0 }
+img { display: block; }
+.responsive {
+  width: 100%;
+}
+.slider {
+  margin-bottom: 1em;
+}
+header {
+  overflow: hidden;
+  margin-bottom: 2em;
+  background: #ddd;
+}
+article {
+  padding: 1em 0;
+}
+footer {
+  overflow: hidden;
+  margin-top: 4em;
+  background: black;
+  color: white;
+}
+</style>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+
+<header>
+  <div class="col">
+    <h1>Header</h1>
+  </div>
+</header>
+
+<article class="slider">
+  <div class='col'>
+    <img src="http://lorempixel.com/1152/450" alt="" class="responsive" />
+  </div>
+</article>
+<article class="content-two">
+  <div class='col'>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  <div class='col'>
+    <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter.</p>
+  </div>
+</article>
+<article class="content-three">
+  <div class='col'>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+  </div>
+  <div class='col'>
+    <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
+  </div>
+  <div class="col">
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
+  </div>
+</article>
+
+<footer>
+  <div class="col">
+    <h1>Footer</h1>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+
+$.columns.setDefaults({ 
+  width: 60,
+  center: true,
+  fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
+})
+
+$('.content-two').columns({ colsPerRow: 2 })
+$('.content-three').columns({ colsPerRow: 3 })
+$('header, footer, .slider').columns({ colsPerRow: 1 })
+
+</script>
+
+</body>
+</html>
+>>>>>>> master
