@@ -19,6 +19,7 @@
         height: 'auto',
         center: true,
         fillAt: 1024, // Resolution at which the layout is 100% width
+        responsiveAt: 1024,
         fontSize: 1.55
       }
 
@@ -69,7 +70,7 @@
         }
 
     if ( hasUnits ) {
-      $win.on('resize.foo', update )
+      $win.on('resize', update )
     }
 
     return update()

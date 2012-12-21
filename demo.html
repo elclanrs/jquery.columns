@@ -74,17 +74,16 @@ footer {
 <script type="text/javascript" charset="utf-8">
 
 $.columns.setDefaults({ 
-  width: 60,
+  width: 50,
   center: true,
   fillAt: 1024,
+  responsiveAt: 1080,
   fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
 })
 
-$('.content-one').columns({ colsPerRow: 1 })
 $('.content-two').columns({ colsPerRow: 2 })
 $('.content-three').columns({ colsPerRow: 3 })
-$('header').columns({ colsPerRow: 1 })
-$('footer').columns({ colsPerRow: 1 })
+$('header, footer, .content-one').columns({ colsPerRow: 1 })
 
 </script>
 
