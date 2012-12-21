@@ -29,6 +29,17 @@
     return {}.toString.call( obj ).match(/\s(\w+)/)[1].toLowerCase()
   }
 
+  function hasViewportUnits( obj ) {
+    var has = false;
+    for ( var o in obj ) {
+      if ( /\d[vwh]+/.test( obj[o] ) ) {
+        has = true
+        break
+      }
+    }
+    return has;
+  }
+
   function viewportToPixel( val ) {
     var percent = val.match(/[\d.]+/)[0] / 100
       , unit = val.match(/[vwh]+/)[0]
@@ -48,16 +59,22 @@
 
   // Override css method to parse viewport units
   $.fn.css = function() {
+
     var self = this
       , args = [].slice.call( arguments )
-      , isObj = typeOf( args[0] ) == 'object'
+
+      , hasUnits = typeOf( args[0] ) == 'object' && hasViewportUnits( args[0] )
+
       , update = function() {
-          return _css.apply( self, isObj ? [ parseProps( $.extend( {}, args[0] ) ) ] : args )
+          return _css.apply( self, hasUnits ? [ parseProps( $.extend( {}, args[0] ) ) ] : args )
         }
-    if ( isObj ) {
+
+    if ( hasUnits ) {
       $win.resize( update )
     }
+
     return update()
+
   }
 
   // Build and arrange columns
@@ -70,7 +87,6 @@
 
       , nth = o.colsPerRow == 1 ? '1n' : o.colsPerRow == 2 ? 'odd' : o.colsPerRow + 1 +'n'
       , $firstRowCol = self.filter(':first, :nth-child('+ nth +')')
-
 
       , getColWidth = function() {
           return $win.width() <= o.fillAt
