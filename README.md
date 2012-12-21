@@ -49,7 +49,7 @@ Set options and call plugin:
 $.columns.setDefaults({ 
   width: 60,
   center: true,
-  fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
+  fontSize: $.columns.calcFontSize([1024, 16], [1440, 20])
               // @media-query________^     ^_____font-size
 })
 
@@ -81,7 +81,7 @@ defaults = {
   width: 75, // percentage of window width
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
-  breakPoints: [ [768, 95], [1080, 80] ] // assign width percentages to different resolutions [res, width]
+  breakPoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
   fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
 }
 ```
