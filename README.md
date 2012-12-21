@@ -69,7 +69,7 @@ Configure @media-queries based on the fontSize set in the plugin. Any resolution
 }
 @media all and (min-width: 1440px) {
   .col { 
-    font-size: 22px !important; 
+    font-size: 20px !important; 
   }
 }
 ```
