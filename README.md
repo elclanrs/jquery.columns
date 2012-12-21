@@ -37,7 +37,7 @@ Create block containers at body level so they cover 100% width, then put as many
   </div>
   <div class="col">
     <!-- content -->
-  </div> !u!@
+  </div>
 </article>
 
 <footer>
