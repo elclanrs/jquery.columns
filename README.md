@@ -1,7 +1,7 @@
 # jquery.columns
 
 jquery.columns extends the native jQuery css method to parse [viewport relative units](http://www.w3.org/TR/css3-values/#viewport-relative-lengths
-) and provides a method to quickly create reponsive layouts.
+)(vh & vw only) and provides a method to quickly create reponsive layouts.
 
 ### How to use it:
 
