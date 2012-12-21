@@ -3,6 +3,8 @@
 jquery.columns extends the native jQuery css method to be able parse [viewport relative units](http://www.w3.org/TR/css3-values/#viewport-relative-lengths
 ) (vh & vw only) and provides a method to quickly create reponsive layouts.
 
+**Demo:** http://elclanrs.github.com/jquery.columns/
+
 ### How to use it:
 
 Create block containers at body level so they cover 100% width, then put as many `div.col` inside as you want.
