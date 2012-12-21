@@ -5,7 +5,8 @@ jquery.columns extends the native jQuery css method to parse [viewport relative 
 
 ### How to use it:
 
-Markup:
+Create block containers at body level so they cover 100% width, then put as many `div.col` inside as you want.
+
 ```html
 <header>
   <div class="col">
@@ -52,11 +53,10 @@ $.columns.setDefaults({
 })
 
 $('.content').columns({ colsPerRow: 3 })
-$('header').columns({ colsPerRow: 1 })
-$('footer').columns({ colsPerRow: 1 })
+$('header, footer').columns({ colsPerRow: 1 })
 ```
 
-Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted.
+Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted. If you want to change fonts on elements inside columns always use percentages or ems to keep proportions.
 
 **Note:** Since we're using JS the view might flicker for a second before auto-adjusting.
 
@@ -87,7 +87,7 @@ defaults = {
 
 ### Using the extended css method:
 
-With jquery.columns you can pass viewport units to the css method and it will get converted to px and updated on window.resize, so the integration is seamless.
+With jquery.columns you can pass viewport units to the css method and it will be converted to px and updated on window.resize, so the integration is seamless.
 
 **Note:** Make sure to pass an object when setting viewport units even if just one property.
 
