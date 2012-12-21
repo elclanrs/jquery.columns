@@ -21,6 +21,12 @@
   clear: both;
 }
 
+@media all and (max-width: 480px) {
+  .col { 
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
 @media all and (max-width: 1024px) {
   .col { 
     font-size: 16px !important; 
