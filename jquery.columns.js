@@ -22,8 +22,6 @@
         fontSize: 1.55
       }
 
-    // Media query
-
   function typeOf( obj ) {
     return {}.toString.call( obj ).match(/\s(\w+)/)[1].toLowerCase()
   }
