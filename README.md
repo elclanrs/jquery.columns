@@ -34,7 +34,7 @@ Markup:
 
 <footer>
   <div class="col">
-    <! content -->  
+    <!-- content -->  
   </div>
 </footer>
 ```
