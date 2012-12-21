@@ -73,6 +73,18 @@ footer ul {
   font-size: 85%;
   text-align: right;
 }
+
+@media all and (max-width: 1024px) {
+  .col { 
+    font-size: 14px !important; 
+  }
+}
+@media all and (min-width: 1440px) {
+  .col { 
+    font-size: 18px !important; 
+  }
+}
+
 </style>
 <meta charset=utf-8 />
 </head>
@@ -154,8 +166,10 @@ footer ul {
 $.columns.setDefaults({ 
   width: 70,
   center: true,
-  fontSize: $.columns.calcFontSize([1024, 16], [1440, 22])
+  fontSize: $.columns.calcFontSize([1024, 14], [1440, 18])
 })
+
+console.log( $.columns.calcFontSize([1024, 14], [1440, 18]))
 
 $('.content-two').columns({ colsPerRow: 2 })
 $('.content-three').columns({ colsPerRow: 3 })
