@@ -80,6 +80,8 @@
         fontSize: this.opts.fontSize +'vw'
       })
 
+      this.$firstRowCol.css('clear', 'both')
+
       if ( this.opts.breakpoints ) {
         $win.resize(function() { self.resize() })
       }
