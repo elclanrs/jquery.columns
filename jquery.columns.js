@@ -101,8 +101,8 @@
     $firstRowCol.css('clear', 'both')
 
     // Responsiveness
-    $win.resize(function(){
-      if ( o.breakpoints ) {
+    if ( o.breakpoints ) {
+      $win.resize(function(){
         $.each( o.breakpoints, function( i, arr ) {
           if ( $win.width() <= arr[0] ) {
             setColWidth( arr[1] )
@@ -111,8 +111,8 @@
           }
           reset()
         })
-      }
-    })
+      })
+    }
 
     // Init
     reset()
