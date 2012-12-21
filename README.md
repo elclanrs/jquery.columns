@@ -54,7 +54,7 @@ $('header').columns({ colsPerRow: 1 })
 $('footer').columns({ colsPerRow: 1 })
 ```
 
-Configure you @media-queries based on the fonSize set in the plugin:
+Configure @media-queries based on the fonSize set in the plugin:
 ```css
 @media all and (max-width: 1024px) {
   .col { 
