@@ -5,6 +5,9 @@ jquery.columns extends the native jQuery css method to be able parse [viewport r
 
 **Demo:** http://elclanrs.github.com/jquery.columns/
 
+**Support:** IE8\*, IE9-10, Webkit, Firefox, Opera  
+\* _IE8 requires polyfills for [html5](http://code.google.com/p/html5shiv/) and [media queries](https://github.com/scottjehl/Respond). 
+
 ### How to use it:
 
 Create block containers at body level so they cover 100% width, then put as many `div.col` inside as you want.
