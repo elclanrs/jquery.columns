@@ -68,3 +68,33 @@ Configure you @media-queries based on the fonSize set in the plugin:
 }
 ```
 
+### Options:
+```javascript
+defaults = {
+  colsPerRow: 3, // columns per row
+  width: 75, // percent of window
+  height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
+  center: true, // center layout
+  fillAt: 1024, // Resolution at which the layout is 100% width
+  fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
+}
+```
+
+### Using the extended css method:
+
+With jquery.columns you can pass viewport units to the css method and it will get converted to px and updated on window.resize, so the integration is seamless.
+
+**Note:** Make sure to pass an object when setting viewport units even if just one property.
+
+```javascript
+// Centered dialog
+$('element').css({
+  width: '50vw',
+  height: '50vh',
+  marginLeft: '25vw'
+  marginTop: '25vh',
+  fontSize: '5vw'
+})
+```
+
+
