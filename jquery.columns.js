@@ -62,7 +62,7 @@
 
     this.$firstRowCol = this.$el
       .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
-  
+
     this.curWidth = null
 
     this.init()
@@ -93,6 +93,7 @@
     reset: function() {
       this.setColWidth( this.opts.width )
       this.setMargin( this.opts.width )
+      this.pushCols( this.opts.width )
     },
 
     getColWidth: function( width ) {
@@ -119,9 +120,7 @@
           , margin = self.getColWidth( width ) * push
 
         if ( push && push.length ) {
-          $(this).css({
-            marginLeft: margin +'px'
-          })
+          $(this).css({ marginLeft: margin +'px' })
         }
 
       })
