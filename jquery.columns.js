@@ -25,7 +25,7 @@
     // Media query
 
   function typeOf( obj ) {
-    return {}.toString.call( obj ).match(/\s\w+/)[0].toLowerCase()
+    return {}.toString.call( obj ).match(/\s(\w+)/)[1].toLowerCase()
   }
 
   function viewportToPixel( val ) {
@@ -38,7 +38,7 @@
     var p, prop
     for ( p in props ) {
       prop = props[ p ]
-      if ( /[\d.][vwh]$/.test( prop ) ) {
+      if ( /\d[vwh]+$/.test( prop ) ) {
         props[ p ] = viewportToPixel( prop )
       }
     }
