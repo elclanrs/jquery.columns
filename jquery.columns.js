@@ -1,8 +1,7 @@
 
 /*
- * Create responsive layouts quickly using
- * viewport relative units. Plugin includes
- * polyfill for $.fn.css to parse viewport units
+ * Create responsive layouts quickly using viewport relative units.
+ * Plugin extends $.fn.css to parse viewport units.
  *
  * http://www.w3.org/TR/css3-values/#viewport-relative-lengths
  */
