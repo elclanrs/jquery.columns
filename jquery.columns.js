@@ -30,14 +30,14 @@
   }
 
   function hasViewportUnits( obj ) {
-    var has = false;
+    var has = false
     for ( var o in obj ) {
       if ( /\d[vwh]+/.test( obj[o] ) ) {
         has = true
         break
       }
     }
-    return has;
+    return has
   }
 
   function viewportToPixel( val ) {
@@ -70,7 +70,7 @@
         }
 
     if ( hasUnits ) {
-      $win.resize( update )
+      $win.on('resize.foo', update )
     }
 
     return update()
