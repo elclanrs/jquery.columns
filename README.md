@@ -72,7 +72,7 @@ Configure you @media-queries based on the fonSize set in the plugin:
 ```javascript
 defaults = {
   colsPerRow: 3, // columns per row
-  width: 75, // percent of window
+  width: 75, // percentage of window width
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
   fillAt: 1024, // Resolution at which the layout is 100% width
