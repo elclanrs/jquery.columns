@@ -1,10 +1,3 @@
-
-/*
- * Create responsive layouts quickly using viewport relative units.
- * Plugin extends $.fn.css to parse viewport units.
- *
- * http://www.w3.org/TR/css3-values/#viewport-relative-lengths
- */
  (function( $, window ) {
 
   $.columns = {} // global object
@@ -15,12 +8,14 @@
     // Default options
     , defaults = {
         colsPerRow: 3,
-        width: 60, // percent of window
+        width: 70, // percent of window
         breakpoints: [ [1024, 95], [1440, 80] ],
         height: 'auto',
         center: true,
         fontSize: 1.55
       }
+
+// ----------------------------------------------------
 
   function typeOf( obj ) {
     return {}.toString.call( obj ).match(/\s(\w+)/)[1].toLowerCase()
@@ -54,6 +49,82 @@
     return props
   }
 
+  function getNthCol( colsPerRow ) {
+    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : colsPerRow + 1 +'n'
+  }
+
+// ----------------------------------------------------
+
+  function Plugin( el, opts ) {
+
+    this.$el = $(el).addClass('clear').find('.col')
+    this.opts = $.extend( {}, defaults, opts )
+
+    this.$firstRowCol = this.$el
+      .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
+
+    this.init()
+  }
+
+  Plugin.prototype = {
+
+    init: function() {
+
+      var self = this
+
+      this.reset()
+      this.$el.css({
+        height: this.opts.height,
+        fontSize: this.opts.fontSize +'vw'
+      })
+
+      if ( this.opts.breakpoints ) {
+        $win.resize(function() { self.resize() })
+      }
+
+      $win.resize()
+
+    },
+
+    reset: function() {
+      this.setColWidth( this.opts.width )
+      this.setMargin( this.opts.width )
+    },
+
+    setColWidth: function( width ) {
+      this.$el.css({ width: width / this.opts.colsPerRow +'vw' })
+    },
+
+    setMargin: function( width ) {
+      if ( this.opts.center ) {
+        this.$firstRowCol.css({ marginLeft: (100 - width) / 2 +'vw' })
+      }
+    },
+
+    resize: function() {
+      var self = this
+      $.each( self.opts.breakpoints, function( i, arr ) {
+        if ( $win.width() <= arr[0] ) {
+          self.setColWidth( arr[1] )
+          self.setMargin( arr[1] )
+          return false
+        }
+        self.reset()
+      })
+    },
+
+  }
+
+  $.fn.columns = function( opts ) {
+    return this.each(function () {
+      if ( !$.data( this, 'columns' ) ) {
+        $.data( this, 'columns', new Plugin( this, opts ) )
+      }
+    })
+  }
+
+// ----------------------------------------------------
+
   // Override css method to parse viewport units
   $.fn.css = function() {
 
@@ -74,59 +145,6 @@
 
   }
 
-  // Build and arrange columns
-  $.fn.columns = function( opts ) {
-
-    var self = this.addClass('clear').find('.col')
-      , o = $.extend( {}, defaults, opts )
-
-      , nth = o.colsPerRow == 1 ? '1n' : o.colsPerRow == 2 ? 'odd' : o.colsPerRow + 1 +'n'
-      , $firstRowCol = self.filter(':first, :nth-child('+ nth +')')
-
-      , setColWidth = function( width ) {
-          self.css({ width: width / o.colsPerRow +'vw' })
-        }
-      , setMargin = function( width ) {
-          if ( o.center ) {
-            $firstRowCol.css({ marginLeft: (100 - width) / 2 +'vw' })
-          }
-        }
-      , reset = function() {
-          setColWidth( o.width )
-          setMargin( o.width )
-        }
-
-    $firstRowCol.css('clear', 'both')
-
-    // Responsiveness
-    if ( o.breakpoints ) {
-      $win.resize(function(){
-        $.each( o.breakpoints, function( i, arr ) {
-          if ( $win.width() <= arr[0] ) {
-            setColWidth( arr[1] )
-            setMargin( arr[1] )
-            return false
-          }
-          reset()
-        })
-      })
-    }
-
-    // Init
-    reset()
-    setTimeout( function(){ $win.resize() }, 1 )
-
-    return self.css({
-      height: o.height,
-      fontSize: o.fontSize +'vw'
-    })
-
-  }
-
-  /*
-   * @param min {Array} [ media, font ]. ie [ 1024, 16 ]
-   * @param max {Array} [ media, font ]. ie [ 1440, 24 ]
-   */
   $.columns.calcFontSize = function( min, max ) {
     var low = ( min[1] * 100 ) / min[0]
       , high = ( max[1] * 100 ) / max[0]
@@ -137,5 +155,4 @@
     $.extend( defaults, opts )
   }
 
-}( jQuery, window ))
-
+})( jQuery, window )
