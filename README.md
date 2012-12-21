@@ -100,6 +100,8 @@ $('element').css({
   marginTop: '25vh',
   fontSize: '5vw'
 })
+
+$(window).resize() // you may have to trigger window.resize to load the changes
 ```
 
 
