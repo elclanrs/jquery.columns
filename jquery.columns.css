@@ -17,7 +17,6 @@
   content: " ";
   display: table;
 }
-
 .clear:after {
   clear: both;
 }
@@ -27,7 +26,6 @@
     font-size: 16px !important; 
   }
 }
-
 @media all and (min-width: 1440px) {
   .col { 
     font-size: 22px !important; 
