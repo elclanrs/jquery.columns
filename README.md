@@ -90,7 +90,8 @@ With jquery.columns you can pass viewport units to the css method and it will ge
 **Note:** Make sure to pass an object when setting viewport units even if just one property.
 
 ```javascript
-// Centered dialog
+// This centers an element in the middle of the screen and
+// auto-adjusts when the window is resized to keep proportions
 $('element').css({
   width: '50vw',
   height: '50vh',
