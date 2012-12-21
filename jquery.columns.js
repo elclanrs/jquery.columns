@@ -119,7 +119,7 @@
         var push = ( /push\-(\d)/.exec( this.className ) || [,0] )[1]
           , margin = self.getColWidth( width ) * push
 
-        if ( push && push.length ) {
+        if ( push ) {
           $(this).css({ marginLeft: margin +'px' })
         }
 
