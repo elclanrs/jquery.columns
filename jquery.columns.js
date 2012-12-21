@@ -54,7 +54,9 @@
       , update = function() {
           return _css.apply( self, isObj ? [ parseProps( $.extend( {}, args[0] ) ) ] : args )
         }
-    $win.resize( update )
+    if ( isObj ) {
+      $win.resize( update )
+    }
     return update()
   }
 
