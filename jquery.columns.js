@@ -1,3 +1,12 @@
+/**
+ * jquery.columns extends the native jQuery css method
+ * to be able parse viewport relative units (vh & vw only)
+ * and provides a method to quickly create reponsive layouts.
+ *
+ * Author: Cedric Ruiz
+ * Docs: https://github.com/elclanrs/jquery.columns
+ * License: MIT
+ */
 ;(function( $, window ) {
 
   $.columns = {} // global object
