@@ -74,7 +74,7 @@ header {
 .docs {
   background: #6AB000;
 }
-.slider img {
+#slider img {
   padding: 1em;
   background: white;
   outline: 1px solid #bbb;
@@ -124,7 +124,7 @@ footer ul {
 </head>
 <body>
 
-<header>
+<header class="row-2">
   <div class="col">
     <h1>jQuery.columns <span>viewport relative responsive grids</span> </h1>
   </div>
@@ -134,13 +134,13 @@ footer ul {
   </div>
 </header>
 
-<article class="slider">
+<article id="slider" class="row-1">
   <div class='col'>
     <img src="http://lorempixel.com/1344/450" alt="" class="responsive" />
   </div>
 </article>
 
-<article class="content-two">
+<article class="row-2">
   <div class='col'>
     <h2>Maui waui</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -150,7 +150,8 @@ footer ul {
     <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter.</p>
   </div>
 </article>
-<article class="content-three">
+
+<article class="row-3">
   <div class='col'>
     <h3>Something</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
@@ -165,7 +166,7 @@ footer ul {
   </div> 
 </article>
 
-<footer>
+<footer class="row-6">
   <div class="col">
     <h1>Footer</h1>
   </div>
@@ -198,20 +199,15 @@ footer ul {
 
 <script type="text/javascript" charset="utf-8">
 
-$.columns.setDefaults({ 
+$.columns.quickSetup('body', { 
   width: 70,
   center: true,
   fontSize: $.columns.calcFontSize([1024, 14], [1440, 18])
 })
 
-$('.content-two').columns({ colsPerRow: 2 })
-$('.content-three').columns({ colsPerRow: 3 })
-$('.slider').columns({ colsPerRow: 1 })
-$('header').columns({ colsPerRow: 2 })
-$('footer').columns({ colsPerRow: 6 })
-
+// Slider:
 setInterval(function() {
-  $('.slider img').attr('src', 'http://lorempixel.com/1344/450?'+ new Date().getTime())
+  $('#slider img').attr('src', 'http://lorempixel.com/1344/450?'+ new Date().getTime())
 }, 2500 )
 
 </script>

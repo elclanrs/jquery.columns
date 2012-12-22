@@ -50,7 +50,7 @@
   }
 
   function getNthCol( colsPerRow ) {
-    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : colsPerRow + 1 +'n'
+    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : +colsPerRow + 1 +'n'
   }
 
 // ----------------------------------------------------
@@ -86,8 +86,6 @@
         $win.resize(function() { self.resize() })
       }
 
-      this.pushCols( this.opts.width )
-
       $win.resize()
 
     },
@@ -106,6 +104,10 @@
       this.$el.css({ width: width / this.opts.colsPerRow +'vw' })
     },
 
+    getMarginToLimits: function( width ) {
+      return ( $win.width() - ( $win.width() * (width / 100) ) ) / 2
+    },
+
     setMargin: function( width ) {
       if ( this.opts.center ) {
         this.$firstRowCol.css({ marginLeft: (100 - width) / 2 +'vw' })
@@ -118,11 +120,19 @@
 
       this.$el.each(function() {
 
-        var push = ( /push\-(\d)/.exec( this.className ) || [,0] )[1]
+        var $this = $(this)
+          , push = ( /push\-(\d)/.exec( this.className ) || [,0] )[1]
           , margin = self.getColWidth( width ) * push
+          , totalMargin = self.getMarginToLimits( width ) + margin
+          , isFirstCol = self.$firstRowCol.filter( $this ).length
 
         if ( push ) {
-          $(this).css({ marginLeft: margin +'px' })
+          // 1ms timeout to run after viewport units have been parsed
+          setTimeout(function() {
+            $this.css({
+              marginLeft: ( isFirstCol ? totalMargin : margin ) +'px',
+            })
+          }, 1 )
         }
 
       })
@@ -159,9 +169,7 @@
 
     var self = this
       , args = [].slice.call( arguments )
-
       , hasUnits = typeOf( args[0] ) == 'object' && hasViewportUnits( args[0] )
-
       , update = function() {
           return _css.apply( self, hasUnits ? [ parseProps( $.extend( {}, args[0] ) ) ] : args )
         }
@@ -182,6 +190,14 @@
 
   $.columns.setDefaults = function( opts ) {
     $.extend( defaults, opts )
+  }
+
+  $.columns.quickSetup = function( selector, opts ) {
+    $.columns.setDefaults( opts )
+    $(selector).find('[class*="row"]').each(function() {
+      var colsPerRow = this.className.match(/row\-(\d+)/)[1]
+      $(this).columns({ colsPerRow: colsPerRow })
+    })
   }
 
 })( jQuery, window )
