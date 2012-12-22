@@ -10,16 +10,16 @@ jquery.columns extends the native jQuery css method to be able parse [viewport r
 
 ### How to use it:
 
-Create block containers at body level so they cover 100% width, then put as many `div.col` inside as you want.
+Create block containers at body level so they cover 100% width and add a class `row-X` where X is "columns per row". Then put as many `div.col` inside as you want. You can push columns using the class `push-X`.
 
 ```html
-<header>
+<header class="row-1">
   <div class="col">
     <!-- content -->
   </div>
 </header>
 
-<article class="content">
+<article class="row-3">
   <div class='col'> 
     <!-- content -->
   </div>
@@ -40,7 +40,7 @@ Create block containers at body level so they cover 100% width, then put as many
   </div>
 </article>
 
-<footer>
+<footer class="row-3">
   <div class="col">
     <!-- content -->  
   </div>
@@ -50,18 +50,16 @@ Create block containers at body level so they cover 100% width, then put as many
 </footer>
 ```
 
-Set options and call plugin:
+Call the plugin on 'body' with some options:
 ```javascript
-$.columns.setDefaults({ 
-  width: 60,
+
+$.columns.quickSetup('body', { 
+  width: 70,
   center: true,
   fontSize: $.columns.calcFontSize([1024, 16], [1440, 20])
               // @media-query________^     ^_____font-size
 })
 
-$('.content').columns({ colsPerRow: 3 })
-$('header').columns({ colsPerRow: 1 })
-$('footer').columns({ colsPerRow: 3 })
 ```
 
 Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted. If you want to change fonts on elements inside columns always use percentages or ems to keep proportions.
