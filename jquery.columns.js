@@ -57,15 +57,16 @@
 
   function Plugin( el, opts ) {
 
-    this.$el = $(el).addClass('clear').find('.col')
     this.opts = $.extend( {}, defaults, opts )
 
-    this.$firstRowCol = this.$el
-      .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
+    this.$wrap = $(el).addClass('clear')
+    this.$cols = null
+    this.$firstRowCol = null
 
     this.curWidth = null
 
     this.init()
+
   }
 
   Plugin.prototype = {
@@ -73,9 +74,12 @@
     init: function() {
 
       var self = this
+ 
+      this.$cols = this.$wrap.find('.col')
+      this.$firstRowCol = this.$cols
+        .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
 
-      this.reset()
-      this.$el.css({
+      this.$cols.css({
         height: this.opts.height,
         fontSize: this.opts.fontSize +'vw'
       })
@@ -86,6 +90,7 @@
         $win.resize(function() { self.resize() })
       }
 
+      this.reset()
       $win.resize()
 
     },
@@ -101,7 +106,7 @@
     },
 
     setColWidth: function( width ) {
-      this.$el.css({ width: width / this.opts.colsPerRow +'vw' })
+      this.$cols.css({ width: width / this.opts.colsPerRow +'vw' })
     },
 
     getMarginToLimits: function( width ) {
@@ -118,7 +123,7 @@
 
       var self = this
 
-      this.$el.each(function() {
+      this.$cols.each(function() {
 
         var $this = $(this)
           , push = ( /push\-(\d)/.exec( this.className ) || [,0] )[1]
@@ -192,11 +197,17 @@
     $.extend( defaults, opts )
   }
 
-  $.columns.quickSetup = function( selector, opts ) {
+  $.columns.quickSetup = function( opts ) {
     $.columns.setDefaults( opts )
-    $(selector).find('[class*="row"]').each(function() {
+    $('body').find('[class*="row"]').each(function() {
       var colsPerRow = this.className.match(/row\-(\d+)/)[1]
       $(this).columns({ colsPerRow: colsPerRow })
+    })
+  }
+
+  $.columns.refresh = function() {
+    $('body').find('[class*="row"]').each(function() {
+      $(this).data('columns').init()
     })
   }
 
