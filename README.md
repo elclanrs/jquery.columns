@@ -83,7 +83,7 @@ Configure @media-queries based on the fontSize set in the plugin. Any resolution
 ```javascript
 defaults = {
   colsPerRow: 3, // columns per row
-  width: 60, // percentage of window width
+  width: 70, // percentage of window width (default unless specified otherwise in breakpoints)
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
   breakPoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
@@ -108,7 +108,9 @@ $('element').css({
   fontSize: '5vw'
 })
 
-$(window).resize() // you may have to trigger window.resize to load the changes
+// You may have to trigger window.resize 
+// to load the changes for the first time
+$(window).resize()
 ```
 
 
