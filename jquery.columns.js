@@ -135,7 +135,7 @@
           // 1ms timeout to run after viewport units have been parsed
           setTimeout(function() {
             $this.css({
-              marginLeft: ( isFirstCol && self.opts.center ? totalMargin : margin ) +'px',
+              marginLeft: ( isFirstCol && self.opts.center ? totalMargin : margin ) +'px'
             })
           }, 1 )
         }
