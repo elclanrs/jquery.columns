@@ -50,7 +50,7 @@
   }
 
   function getNthCol( colsPerRow ) {
-    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : +colsPerRow + 1 +'n'
+    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : colsPerRow + 1 +'n'
   }
 
 // ----------------------------------------------------
@@ -200,7 +200,7 @@
   $.columns.quickSetup = function( opts ) {
     $.columns.setDefaults( opts )
     $('body').find('[class*="row"]').each(function() {
-      var colsPerRow = this.className.match(/row\-(\d+)/)[1]
+      var colsPerRow = +this.className.match(/row\-(\d+)/)[1]
       $(this).columns({ colsPerRow: colsPerRow })
     })
   }
