@@ -50,7 +50,7 @@ Create block containers at body level so they cover 100% width and add a class `
 </footer>
 ```
 
-Call the plugin on 'body' with some options:
+Call the plugin on `body` with some options:
 ```javascript
 
 $.columns.quickSetup('body', { 
