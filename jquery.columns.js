@@ -74,7 +74,7 @@
     init: function() {
 
       var self = this
- 
+
       this.$cols = this.$wrap.find('.col')
       this.$firstRowCol = this.$cols
         .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
@@ -87,7 +87,7 @@
       this.$firstRowCol.css('clear', 'both')
 
       if ( this.opts.breakpoints ) {
-        $win.resize(function() { self.resize() })
+        $win.on('resize.columns', function() { self.resize() })
       }
 
       this.reset()
@@ -206,6 +206,7 @@
   }
 
   $.columns.refresh = function() {
+    $win.off('resize.columns')
     $('body').find('[class*="row"]').each(function() {
       $(this).data('columns').init()
     })
