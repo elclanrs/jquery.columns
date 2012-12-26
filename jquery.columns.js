@@ -65,7 +65,7 @@
 
 // ----------------------------------------------------
 
-  function Plugin( el, opts ) {
+  function Columns( el, opts ) {
 
     this.opts = $.extend( {}, defaults, opts )
 
@@ -77,7 +77,7 @@
 
   }
 
-  Plugin.prototype = {
+  Columns.prototype = {
 
     init: function() {
 
@@ -170,7 +170,7 @@
   $.fn.columns = function( opts ) {
     return this.each(function () {
       if ( !$.data( this, 'columns' ) ) {
-        $.data( this, 'columns', new Plugin( this, opts ) )
+        $.data( this, 'columns', new Columns( this, opts ) )
       }
     })
   }
