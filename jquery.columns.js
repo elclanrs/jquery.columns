@@ -7,6 +7,7 @@
  * Docs: https://github.com/elclanrs/jquery.columns
  * License: MIT
  */
+ /*jshint asi:true */
 ;(function( $, window ) {
 
   $.columns = {} // global object
@@ -71,8 +72,6 @@
     this.$wrap = $(el).addClass('clear')
     this.$cols = null
     this.$firstRowCol = null
-
-    this.curWidth = null
 
     this.init()
 
