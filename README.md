@@ -87,7 +87,7 @@ defaults = {
   width: 70, // percentage of window width (default unless specified otherwise in breakpoints)
   height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
   center: true, // center layout
-  breakPoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
+  breakpoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
   fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
 }
 ```
