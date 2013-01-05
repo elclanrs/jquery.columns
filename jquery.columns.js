@@ -214,12 +214,6 @@
 
   }
 
-  $.columns.calcFontSize = function( min, max ) {
-    var low = ( min[1] * 100 ) / min[0]
-      , high = ( max[1] * 100 ) / max[0]
-    return ( (low + high) / 2 ).toFixed(2)
-  }
-
   $.columns.setDefaults = function( opts ) {
     $.extend( defaults, opts )
   }
