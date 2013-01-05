@@ -19,7 +19,7 @@
     , defaults = {
         colsPerRow: 3,
         breakPoints: [ [1024, 95], [2560, 45] ],
-        fontSize: [14, 18],
+        fontSize: [16, 16],
         height: 'auto',
         center: true
       }
@@ -135,7 +135,7 @@
         , maxFontRatio = (maxFont * 100) / winWidth
         , curFont = (maxFont - minFont) / (maxFontRatio - minFontRatio)
 
-      return curFont > maxFont ? maxFontRatio
+      return curFont > maxFont || minFont == maxFont ? maxFontRatio
         : curFont < minFont ? minFontRatio
         : 1
 
