@@ -19,7 +19,7 @@
     , defaults = {
         colsPerRow: 3,
         breakPoints: [ [1024, 95], [2560, 45] ],
-        fontSize: [16, 16],
+        fontSize: [14, 18],
         height: 'auto',
         center: true
       }
