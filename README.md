@@ -60,7 +60,7 @@ $.columns.quickSetup()
 ```javascript
 defaults = {
   center: true // center layout?
-  breakPoints: [ [1024, 95], [1440, 65] ] // [ [min res, width percent], [max res, width percent] ]
+  breakPoints: [ [1024, 95], [2560, 45] ] // [ [min res, width percent], [max res, width percent] ]
   fontSize: [14, 18] // [min, max] in pixels
 }
 ```
