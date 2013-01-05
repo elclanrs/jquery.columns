@@ -90,8 +90,8 @@ article {
 footer {
   overflow: hidden;
   min-height: 250px;
-  margin-top: 100px;
-  padding: 30px 0;
+  margin-top: 8em;
+  padding: 2em 0;
   background: #151515;
 }
 footer h1 {
@@ -110,16 +110,6 @@ footer ul {
   .download, .docs { 
     margin: .5em .2em 2em 0;
     float: left;
-  }
-}
-@media all and (max-width: 1024px) {
-  .col { 
-    font-size: 14px !important; 
-  }
-}
-@media all and (min-width: 1440px) {
-  .col { 
-    font-size: 18px !important; 
   }
 }
 
@@ -203,11 +193,9 @@ footer ul {
 
 <script type="text/javascript" charset="utf-8">
 
-$.columns.quickSetup({ 
-  width: 70,
-  center: true,
-  fontSize: $.columns.calcFontSize([1024, 14], [1440, 18])
-})
+$.columns.quickSetup()
+
+// console.log($.columns.calcFontSize([1024, 12], [1440, 16]))
 
 // Slider:
 setInterval(function() {

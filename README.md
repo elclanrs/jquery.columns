@@ -51,44 +51,17 @@ Create block containers at body level so they cover 100% width and add a class `
 </footer>
 ```
 
-Call the plugin with some options:
+Then call the plugin:
 ```javascript
-
-$.columns.quickSetup({ 
-  width: 70,
-  center: true,
-  fontSize: $.columns.calcFontSize([1024, 16], [1440, 20])
-              // @media-query________^     ^_____font-size
-})
-
-```
-
-Configure @media-queries based on the fontSize set in the plugin. Any resolution in between min and max will be auto-adjusted. If you want to change fonts on elements inside columns always use percentages or ems to keep proportions.
-
-**Note:** Since we're using JS the view might flicker for a second before auto-adjusting.
-
-```css
-@media all and (max-width: 1024px) {
-  .col { 
-    font-size: 16px !important;
-  }
-}
-@media all and (min-width: 1440px) {
-  .col { 
-    font-size: 20px !important; 
-  }
-}
+$.columns.quickSetup()
 ```
 
 ### Options:
 ```javascript
 defaults = {
-  colsPerRow: 3, // columns per row
-  width: 70, // percentage of window width (default unless specified otherwise in breakpoints)
-  height: 'auto', // useful for some layouts, you can set it in viewport units (vh)
-  center: true, // center layout
-  breakpoints: [ [1024, 95], [1440, 80] ] // assign width percentages to different resolutions [res, width]
-  fontSize: 1.55 // font size in viewport units, calculate with $.columns.calcFontSize
+  center: true // center layout?
+  breakPoints: [ [1024, 95], [1440, 65] ] // [ [min res, width percent], [max res, width percent] ]
+  fontSize: [14, 18] // [min, max] in pixels
 }
 ```
 

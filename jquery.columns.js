@@ -18,11 +18,10 @@
     // Default options
     , defaults = {
         colsPerRow: 3,
-        width: 70, // percent of window
-        breakpoints: [ [1024, 95], [1440, 80] ],
+        breakPoints: [ [1024, 95], [2560, 45] ],
+        fontSize: [14, 18],
         height: 'auto',
-        center: true,
-        fontSize: 1.55
+        center: true
       }
 
 // ----------------------------------------------------
@@ -89,24 +88,57 @@
 
       this.$cols.css({
         height: this.opts.height,
-        fontSize: this.opts.fontSize +'vw'
       })
 
       this.$firstRowCol.css('clear', 'both')
 
-      if ( this.opts.breakpoints ) {
-        $win.on('resize.columns', function() { self.resize() })
+      if ( this.opts.breakPoints ) {
+        $win.on('resize.columns', function() { self.refresh() })
       }
 
-      this.reset()
+      this.refresh()
       $win.resize()
 
     },
 
-    reset: function() {
-      this.setColWidth( this.opts.width )
-      this.setMargin( this.opts.width )
-      this.pushCols( this.opts.width )
+    refresh: function() {
+      this.setColWidth( this.getViewportWidth() )
+      this.setMargin( this.getViewportWidth() )
+      this.pushCols( this.getViewportWidth() )
+      this.$cols.css({
+        fontSize: this.getFontRatio() +'vw'
+      })
+    },
+
+    getViewportWidth: function() {
+
+      var bp = this.opts.breakPoints
+        , minRes = bp[0][0]
+        , maxRes = bp[1][0]
+        , minWidth = bp[1][1]
+        , maxWidth = bp[0][1]
+        , increment = (maxWidth - minWidth) / (maxRes - minRes)
+        , curWidth = minWidth + Math.abs( $win.width() - maxRes ) * increment
+
+      return $win.width() > maxRes ? minWidth
+        : $win.width() < minRes ? maxWidth
+        : curWidth
+
+    },
+
+    getFontRatio: function() {
+
+      var winWidth = $win.width()
+        , minFont = this.opts.fontSize[0]
+        , maxFont = this.opts.fontSize[1]
+        , minFontRatio = (minFont * 100) / winWidth
+        , maxFontRatio = (maxFont * 100) / winWidth
+        , curFont = (maxFont - minFont) / (maxFontRatio - minFontRatio)
+
+      return curFont > maxFont ? maxFontRatio
+        : curFont < minFont ? minFontRatio
+        : 1
+
     },
 
     getColWidth: function( width ) {
@@ -150,19 +182,6 @@
 
       })
 
-    },
-
-    resize: function() {
-      var self = this
-      $.each( self.opts.breakpoints, function( i, arr ) {
-        if ( $win.width() <= arr[0] ) {
-          self.setColWidth( arr[1] )
-          self.setMargin( arr[1] )
-          self.pushCols( arr[1] )
-          return false
-        }
-        self.reset()
-      })
     }
 
   }
