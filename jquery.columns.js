@@ -58,10 +58,6 @@
     return props
   }
 
-  function getNthCol( colsPerRow ) {
-    return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : colsPerRow + 1 +'n'
-  }
-
 // ----------------------------------------------------
 
   function Columns( el, opts ) {
@@ -84,7 +80,7 @@
 
       this.$cols = this.$wrap.find('.col')
       this.$firstRowCol = this.$cols
-        .filter(':first, :nth-child('+ getNthCol( this.opts.colsPerRow ) +')')
+        .filter(':first, :nth-child('+ this.getNthCol( this.opts.colsPerRow ) +')')
 
       this.$cols.css({
         height: this.opts.height,
@@ -109,6 +105,10 @@
       this.$cols.css({
         fontSize: this.getFontRatio() +'vw'
       })
+    },
+
+    getNthCol: function( colsPerRow ) {
+      return colsPerRow == 1 ? '1n' : colsPerRow == 2 ? 'odd' : colsPerRow + 1 +'n'
     },
 
     getViewportWidth: function() {
