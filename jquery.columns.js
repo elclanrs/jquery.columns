@@ -102,9 +102,10 @@
     },
 
     refresh: function() {
-      this.setColWidth( this.getViewportWidth() )
-      this.setMargin( this.getViewportWidth() )
-      this.pushCols( this.getViewportWidth() )
+      var width = this.getViewportWidth()
+      this.setColWidth( width )
+      this.setMargin( width )
+      this.pushCols( width )
       this.$cols.css({
         fontSize: this.getFontRatio() +'vw'
       })
