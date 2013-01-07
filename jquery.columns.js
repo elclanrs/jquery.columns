@@ -10,6 +10,8 @@
  /*jshint asi:true */
 ;(function( $, window ) {
 
+  'use strict';
+
   $.columns = {} // global object
 
   var $win = $(window)
@@ -234,4 +236,4 @@
     })
   }
 
-})( jQuery, window )
+}( jQuery, window ))
