@@ -70,10 +70,11 @@ defaults = {
 ```
 
 You can also change the number of columns of a row at different width breakpoints by simply giving an id to your row containers and calling `$.columns.setCols`:
-
+```javascript
 $.columns.setCols({
   'mycontainer': [1280, 2] // set 2 columns per row on #mycontainer when window is less than 1280 
 })
+```
 
 To calculate the maximum width of the layout in pixels (ie. for image sizes): 
 ```javascript
