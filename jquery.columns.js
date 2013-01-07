@@ -64,11 +64,15 @@
 
   function Columns( el, opts ) {
 
+    var self = this
+
     this.opts = $.extend( {}, defaults, opts )
 
     this.$wrap = $(el).addClass('clear')
     this.$cols = null
     this.$firstRowCol = null
+
+    $win.on('resize.columns', function() { self.init() })
 
     this.init()
 
@@ -79,6 +83,7 @@
     init: function() {
 
       var self = this
+        , width = this.getViewportWidth()
 
       this.$cols = this.$wrap.find('.col')
       this.$firstRowCol = this.$cols
@@ -89,24 +94,13 @@
       })
 
       this.$firstRowCol.css('clear', 'both')
-
-      if ( this.opts.breakPoints ) {
-        $win.on('resize.columns', function() { self.refresh() })
-      }
-
-      this.refresh()
-      $win.resize()
-
-    },
-
-    refresh: function() {
-      var width = this.getViewportWidth()
       this.setColWidth( width )
       this.setMargin( width )
       this.pushCols( width )
       this.$cols.css({
         fontSize: this.getFontRatio() +'vw'
       })
+
     },
 
     getNthCol: function( colsPerRow ) {
@@ -230,7 +224,6 @@
   }
 
   $.columns.refresh = function() {
-    $win.off('resize.columns')
     $('body').find('[class*="row"]').each(function() {
       $(this).data('columns').init()
     })
