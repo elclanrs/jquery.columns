@@ -58,13 +58,17 @@ $.columns.quickSetup()
 
 ### Options:
 
-Adjust `breakPoints` and `fontSize` min and max values and everything in between will be auto-adjusted to the current window size.
+Adjust `breakPoints` and `fontSize` min and max values and everything in between will be auto-adjusted based the current window size. 
 ```javascript
 defaults = {
   center: true // center layout?
   breakPoints: [ [1024, 95], [2560, 45] ] // [ [min res, width percent], [max res, width percent] ]
   fontSize: [14, 18] // [min, max] in pixels
 }
+```
+To calculate the maximum width of the layout in pixels (ie. for image sizes): 
+```
+widthInPx = maxRes * (widthPercent * 100); // Default: 2560 * (45/100) = 1152px
 ```
 
 ### Using the extended css method:
