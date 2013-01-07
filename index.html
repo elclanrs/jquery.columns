@@ -134,7 +134,7 @@ footer ul {
   </div>
 </article>
 
-<article class="row-2">
+<article id="content-1" class="row-2">
   <div class='col'>
     <h2>Maui waui</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -145,7 +145,7 @@ footer ul {
   </div>
 </article>
 
-<article class="row-3">
+<article id="content-2" class="row-4">
   <div class='col'>
     <h3>Something</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
@@ -154,6 +154,10 @@ footer ul {
     <h3>Nothing</h3>
     <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
   </div>
+  <div class="col">
+    <h3>Everything</h3>
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
+  </div> 
   <div class="col">
     <h3>Everything</h3>
     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
@@ -199,6 +203,11 @@ $.columns.quickSetup()
 setInterval(function() {
   $('#slider img').attr('src', 'http://lorempixel.com/1344/450?'+ new Date().getTime())
 }, 2500 )
+
+$.columns.setCols({
+  'content-1': [1280, 1],
+  'content-2': [1280, 2]
+});
 
 </script>
 

@@ -85,7 +85,7 @@
       var self = this
         , width = this.getViewportWidth()
 
-      this.$cols = this.$wrap.find('.col')
+      this.$cols = this.$wrap.find('.col').removeAttr('style')
       this.$firstRowCol = this.$cols
         .filter(':first, :nth-child('+ this.getNthCol( this.opts.colsPerRow ) +')')
 
@@ -94,6 +94,7 @@
       })
 
       this.$firstRowCol.css('clear', 'both')
+
       this.setColWidth( width )
       this.setMargin( width )
       this.pushCols( width )
@@ -169,12 +170,9 @@
           , isFirstCol = self.$firstRowCol.filter( $this ).length
 
         if ( push ) {
-          // 1ms timeout to run after viewport units have been parsed
-          setTimeout(function() {
-            $this.css({
-              marginLeft: ( isFirstCol && self.opts.center ? totalMargin : margin ) +'px'
-            })
-          }, 1 )
+          $this.css({
+            marginLeft: ( isFirstCol && self.opts.center ? totalMargin : margin ) +'px'
+          })
         }
 
       })
@@ -197,6 +195,7 @@
   $.fn.css = function() {
 
     var self = this
+      , randomId = new Date().getTime()
       , args = [].slice.call( arguments )
       , hasUnits = typeOf( args[0] ) == 'object' && hasViewportUnits( args[0] )
       , update = function() {
@@ -204,8 +203,11 @@
         }
 
     if ( hasUnits ) {
-      $win.resize( update )
+      $win.on('resize.'+ randomId, update )
     }
+
+    $win.off('resize.'+ $(this).data('viewport-css') )
+    $(this).data('viewport-css', randomId )
 
     return update()
 
@@ -221,6 +223,23 @@
       var colsPerRow = +this.className.match(/row\-(\d+)/)[1]
       $(this).columns({ colsPerRow: colsPerRow })
     })
+  }
+
+  $.columns.setCols = function( els ) {
+
+    $.each( els, function( el, props ) {
+      var $el = $('#'+ el)
+        , res = props[0]
+        , cols = props[1]
+        , columns = $el.data('columns')
+        , update = function() {
+            columns.opts.colsPerRow = $win.width() < res ? cols : $el.data('colsPerRow')
+          }
+      $el.data('colsPerRow', columns.opts.colsPerRow )
+      $win.on('resize.columns', update )
+      update()
+    })
+
   }
 
   $.columns.refresh = function() {
