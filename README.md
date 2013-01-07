@@ -13,7 +13,7 @@ jquery.columns extends the native jQuery css method to be able parse [viewport r
 
 Create block containers at body level so they cover 100% width and add a class `row-X` where X is "columns per row". Then put as many `div.col` inside as you want. You can push columns using the class `push-X`.
 
-If you add columns dynamically make sure to call `$.columns.refresh()` after they've been added to the DOM.
+When you add columns dynamically make sure to call `$.columns.refresh()` after they've been added to the DOM.
 
 ```html
 <header class="row-1">
