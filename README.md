@@ -65,7 +65,7 @@ Adjust `breakPoints` and `fontSize` min and max values and everything in between
 defaults = {
   center: true // center layout?
   breakPoints: [ [1024, 95], [2560, 45] ] // [ [min res, width percent], [max res, width percent] ]
-  fontSize: [14, 18] // [min, max] in pixels
+  fontSize: [14, 16] // [min, max] in pixels
 }
 ```
 
