@@ -241,7 +241,6 @@
 
       var $el = $('#'+ el)
         , columns = $el.data('columns')
-        //, randomId = new Date().getTime()
         , update = function() {
             $.each( props, function( i, prop ) {
               var res = prop[0]
