@@ -60,6 +60,16 @@
     return props
   }
 
+  function getClosestValue( a,n ) {
+    var val
+    for ( var i = a.length; i--; ) {
+      if ( a[i] <= n && ( val == null || val < a[i] ) ) {
+        val = a[i]
+      }
+    }
+    return val
+  }
+
 // ----------------------------------------------------
 
   function Columns( el, opts ) {
@@ -228,16 +238,55 @@
   $.columns.setCols = function( els ) {
 
     $.each( els, function( el, props ) {
+
       var $el = $('#'+ el)
-        , res = props[0]
-        , cols = props[1]
         , columns = $el.data('columns')
+        //, randomId = new Date().getTime()
         , update = function() {
-            columns.opts.colsPerRow = $win.width() < res ? cols : $el.data('colsPerRow')
+            $.each( props, function( i, prop ) {
+              var res = prop[0]
+                , cols = prop[1]
+              if ( $win.width() < res ) {
+                columns.opts.colsPerRow = cols
+                return false
+              } else {
+                columns.opts.colsPerRow = $el.data('colsPerRow')
+              }
+            })
           }
+
       $el.data('colsPerRow', columns.opts.colsPerRow )
+
       $win.on('resize.columns', update )
       update()
+
+      //$.each( props, function( i, prop ) {
+        //var res = prop[0]
+        //var update = function() {
+          //var c = getClosestValue( cols, $win.width() )
+          //columns.opts.colsPerRow = $win.width() < res ? c : $el.data('colsPerRow')
+        //}
+        //$win.on('resize.columns', update )
+        //update()
+      //})
+
+      columns.init()
+
+      //getClosestValue()
+
+      //$.each( props, function( i, arr ) {
+        //var res = arr[0]
+          //, cols = arr[1]
+          //, update = function() {
+              //columns.opts.colsPerRow = $win.width() < res ? cols : $el.data('colsPerRow')
+            //}
+        ////$win.off('resize.columns'+ $el.data('columns-cols') )
+        ////$win.on('resize.columns'+ randomId, update )
+        ////$el.data('columns-cols', randomId )
+        //update()
+        //columns.init()
+      //})
+
     })
 
   }
