@@ -60,16 +60,6 @@
     return props
   }
 
-  function getClosestValue( a,n ) {
-    var val
-    for ( var i = a.length; i--; ) {
-      if ( a[i] <= n && ( val == null || val < a[i] ) ) {
-        val = a[i]
-      }
-    }
-    return val
-  }
-
 // ----------------------------------------------------
 
   function Columns( el, opts ) {
