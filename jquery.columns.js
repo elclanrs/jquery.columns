@@ -82,8 +82,7 @@
 
     init: function() {
 
-      var self = this
-        , width = this.getViewportWidth()
+      var width = this.getViewportWidth()
 
       this.$cols = this.$wrap.find('.col').removeAttr('style')
       this.$firstRowCol = this.$cols
