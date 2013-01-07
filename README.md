@@ -72,7 +72,10 @@ defaults = {
 You can also change the number of columns of a row at different width breakpoints by simply giving an id to your row containers and calling `$.columns.setCols`:
 ```javascript
 $.columns.setCols({
-  'mycontainer': [1280, 2] // set 2 columns per row on #mycontainer when window is less than 1280 
+  // set 2 columns per row on #mycontainer when window is less than 1280,
+  // and 1 column per row when it's less than 1024
+  'mycontainer': [ [1024, 1], [1280, 2] ]
+  'mycontainer2' [ [1024, 1] ] 
 })
 ```
 
