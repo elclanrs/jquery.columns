@@ -67,7 +67,7 @@ defaults = {
 }
 ```
 To calculate the maximum width of the layout in pixels (ie. for image sizes): 
-```
+```javascript
 widthInPx = maxRes * (widthPercent * 100); // Default: 2560 * (45/100) = 1152px
 ```
 
