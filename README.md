@@ -57,6 +57,8 @@ $.columns.quickSetup()
 ```
 
 ### Options:
+
+Adjust `breakPoints` and `fontSize` min and max values and everything in between will be auto-adjusted to the current window size.
 ```javascript
 defaults = {
   center: true // center layout?
