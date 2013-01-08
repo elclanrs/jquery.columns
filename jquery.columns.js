@@ -194,7 +194,7 @@
   $.fn.css = function() {
 
     var self = this
-      , randomId = new Date().getTime()
+      , uniqId = new Date().getTime()
       , args = [].slice.call( arguments )
       , hasUnits = typeOf( args[0] ) == 'object' && hasViewportUnits( args[0] )
       , update = function() {
@@ -202,11 +202,11 @@
         }
 
     if ( hasUnits ) {
-      $win.on('resize.'+ randomId, update )
+      $win.on('resize.'+ uniqId, update )
     }
 
     $win.off('resize.'+ $(this).data('viewport-css') )
-    $(this).data('viewport-css', randomId )
+    $(this).data('viewport-css', uniqId )
 
     return update()
 
